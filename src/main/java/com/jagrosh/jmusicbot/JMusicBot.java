@@ -136,18 +136,6 @@ public class JMusicBot {
             jda.updateCommands().queue();
             bot.setJDA(jda);
 
-            // check if something about the current startup is not supported
-            var unsupportedReason = OtherUtil.getUnsupportedBotReason(jda);
-            if (unsupportedReason != null) {
-                prompt.alert(Prompt.Level.ERROR, "JMusicBot", "JMusicBot cannot be run on this Discord bot: " + unsupportedReason);
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException ignored) {
-                } // this is awful but until we have a better way...
-                jda.shutdown();
-                System.exit(1);
-            }
-
             // other check that will just be a warning now but may be required in the future
             // check if the user has changed the prefix and provide info about the 
             // message content intent
